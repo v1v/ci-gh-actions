@@ -115,7 +115,7 @@ runs:
         echo "Detected OS: $OS, Architecture: $ARCH, using Vault binary for: ${VAULT_OS}_${VAULT_ARCH}"
         VAULT_PATH=$RUNNER_TEMP/vault
         mkdir -p "$VAULT_PATH"
-        CURL_RETRY_ARGS=(--retry 5 --retry-delay 5)
+        CURL_RETRY_ARGS=(--retry 5 --retry-delay 5 --connect-timeout 10 --max-time 60)
         if curl --retry-connrefused --version >/dev/null 2>&1; then
           CURL_RETRY_ARGS+=(--retry-connrefused)
         fi
